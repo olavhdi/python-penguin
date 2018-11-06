@@ -125,7 +125,7 @@ def chooseAction(body):
                 mygain = 1
         if body["enemies"][0]["strength"]/body["you"]["weaponDamage"] -mygain < body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
             action = SHOOT
-        elif body["enemies"][0]["strength"]/body["you"]["weaponDamage"] +mygain == body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
+        elif body["enemies"][0]["strength"]/body["you"]["weaponDamage"] -mygain == body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
             if mygain == 1:
                 action = SHOOT
             else:
