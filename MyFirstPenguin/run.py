@@ -72,20 +72,36 @@ def enemyInLine(body):
         return "vertical"
     return "none"
 
-def line(body,value,first,second):
-    if body["enemies"][0][value] < body["you"][value]:
-        if body["enemies"][0]["direction"] == first:
-            if body["you"]["direction"] == second:
+def lineVertical(body):
+    if body["enemies"][0]["x"] < body["you"]["x"]:
+        if body["enemies"][0]["direction"] == "right":
+            if body["you"]["direction"] == "left":
                 return "both see"
             return "he sees"
-        if body["you"]["direction"] == second:
+        if body["you"]["direction"] == "left":
             return "you see"
     else:
-        if body["enemies"][0]["direction"] == second:
-            if body["you"]["direction"] == first:
+        if body["enemies"][0]["direction"] == "left":
+            if body["you"]["direction"] == "right":
                 return "both see"
             return "he sees"
-        if body["you"]["direction"] == first:
+        if body["you"]["direction"] == "right":
+            return "you see"
+
+def lineHorisontal(body):
+    if body["enemies"][0]["y"] < body["you"]["y"]:
+        if body["enemies"][0]["direction"] == "bottom":
+            if body["you"]["direction"] == "top":
+                return "both see"
+            return "he sees"
+        if body["you"]["direction"] == "top":
+            return "you see"
+    else:
+        if body["enemies"][0]["direction"] == "top":
+            if body["you"]["direction"] == "bottom":
+                return "both see"
+            return "he sees"
+        if body["you"]["direction"] == "bottom":
             return "you see"
     return "noone sees"
 
@@ -95,7 +111,7 @@ def chooseAction(body):
     if visibleEnemy(body):
         line = enemyInLine(body)
         if line == "vertical":
-            vert = line(body,"x","right","left")
+            vert = lineVertical(body)
             if vert == "he sees":
                 action = RETREAT
             elif vert == "both see":
@@ -103,7 +119,7 @@ def chooseAction(body):
             elif vert == "you see":
                 action = ADVANCE
         elif line == "horisontal":
-            hori = line(body,"y","bottom","top")
+            hori = lineHorisontal(body)
             if hori == "he sees":
                 action = RETREAT
             elif hori == "both see":
