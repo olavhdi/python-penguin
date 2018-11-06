@@ -61,7 +61,7 @@ def moveTowardsCenterOfMap(body):
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
 def chooseAction(body):
-    if enemies.strength > 0
+    if enemies[1].strength > 0
         action = PASS
     return action
 
