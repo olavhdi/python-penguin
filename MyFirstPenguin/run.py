@@ -105,6 +105,25 @@ def lineHorisontal(body):
             return "you see"
     return "noone sees"
 
+def rotateToEnemy(body):
+    if body[enemies][0]["x"] == body["you"]["x"]:
+        if body[enemies][0]["y"] < body["you"]["y"]:
+            if body["you"]["direction"] == "right":
+                return ROTATE_LEFT
+            return ROTATE_RIGHT
+        else:
+            if body["you"]["direction"] == "right":
+                return ROTATE_RIGHT
+            return ROTATE_LEFT
+    if body[enemies][0]["x"] < body["you"]["y"]:
+        if body["you"]["direction"] == "top":
+            return ROTATE_LEFT
+        return ROTATE_RIGHT
+    else:
+        if body["you"]["direction"] == "top":
+            return ROTATE_RIGHT
+        return ROTATE_RIGHT
+
 
 def chooseAction(body):
     action = moveTowardsCenterOfMap(body)
@@ -115,17 +134,21 @@ def chooseAction(body):
             if vert == "he sees":
                 action = RETREAT
             elif vert == "both see":
-                action = ADVANCE
+                action = SHOOT
             elif vert == "you see":
                 action = SHOOT
+            else:
+                action = rotateToEnemy(body)
         elif line == "horisontal":
             hori = lineHorisontal(body)
             if hori == "he sees":
                 action = RETREAT
             elif hori == "both see":
-                action = ADVANCE
+                action = SHOOT
             elif hori == "you see":
                 action = SHOOT
+            else:
+                action = rotateToEnemy(body)
     return action
 
 env = os.environ
