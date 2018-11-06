@@ -67,11 +67,9 @@ def visibleEnemy(body):
 
 
 def chooseAction(body):
-    action = PASS
-    if body["enemies"][0]["strength"] < 150:
-        action=PASS
-    else:
-        action = moveTowardsCenterOfMap(body)
+    action = moveTowardsCenterOfMap(body)
+    if visibleEnemy(body):
+        action = SHOOT
     return action
 
 env = os.environ
