@@ -107,7 +107,7 @@ def lineHorisontal(body):
 
 
 def chooseAction(body):
-    action = PASS
+    action = moveTowardsCenterOfMap(body)
     if visibleEnemy(body):
         if enemyInLine(body) == "vertical":
             if lineVertical(body) == "he sees":
