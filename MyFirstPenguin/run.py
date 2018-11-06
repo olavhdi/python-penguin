@@ -111,6 +111,8 @@ def chooseAction(body):
     if visibleEnemy(body):
         mygain = 0
         line = enemyInLine(body)
+        if line == "none":
+            continue
         if line == "vertical":
             vert = lineVertical(body)
             if vert == "he sees":
