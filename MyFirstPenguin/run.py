@@ -61,8 +61,11 @@ def moveTowardsCenterOfMap(body):
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
 def chooseAction(body):
-    if enemies[1].strength > 0
-        action = PASS
+    action = PASS
+    if enemies[0].strength < 250:
+        action=PASS
+    else
+        action = moveTowardsCenterOfMap(body)
     return action
 
 env = os.environ
@@ -72,8 +75,8 @@ responseBody = open(env['res'], 'w')
 response = {}
 returnObject = {}
 if req_params_query == "info":
-    returnObject["name"] = "Pingu"
-    returnObject["team"] = "Team Python"
+    returnObject["name"] = "Nils Olav"
+    returnObject["team"] = "Det norske forsvaret"
 elif req_params_query == "command":
     body = json.loads(open(env["req"], "r").read())
     returnObject["command"] = chooseAction(body)
