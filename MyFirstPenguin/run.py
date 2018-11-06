@@ -109,38 +109,23 @@ def lineHorisontal(body):
 def chooseAction(body):
     action = moveTowardsCenterOfMap(body)
     if visibleEnemy(body):
-        mygain = 0
         line = enemyInLine(body)
-        if line == "none":
-            continue
         if line == "vertical":
             vert = lineVertical(body)
             if vert == "he sees":
-                mygain = -1
+                action = RETREAT
+            elif vert == "both see":
+                action = ADVANCE
             elif vert == "you see":
-                mygain = 1
+                action = SHOOT
         elif line == "horisontal":
             hori = lineHorisontal(body)
             if hori == "he sees":
-                mygain = -1
+                action = RETREAT
+            elif hori == "both see":
+                action = ADVANCE
             elif hori == "you see":
-                mygain = 1
-        if body["enemies"][0]["strength"]/body["you"]["weaponDamage"] -mygain < body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
-            action = SHOOT
-        elif body["enemies"][0]["strength"]/body["you"]["weaponDamage"] -mygain == body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
-            if mygain == 1:
                 action = SHOOT
-            else:
-                #Let etter stuff
-                #gå rundt
-                action = moveTowardsCenterOfMap(body)
-        else: # gå rundt
-            action = moveTowardsCenterOfMap(body)
-    else:
-        if body["enemies"][0]["strength"] <= body["you"]["strength"]: # let etter motstander
-            action = moveTowardsCenterOfMap(body)
-        else: #let etter powerups og god posisjon
-            action = moveTowardsCenterOfMap(body)
     return action
 
 env = os.environ
