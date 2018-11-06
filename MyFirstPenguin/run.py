@@ -64,7 +64,7 @@ def chooseAction(body):
     action = PASS
     if enemies[0].strength < 250:
         action=PASS
-    else
+    else:
         action = moveTowardsCenterOfMap(body)
     return action
 
