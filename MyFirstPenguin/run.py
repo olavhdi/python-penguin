@@ -163,7 +163,10 @@ def chooseAction(body):
         elif line == "horisontal":
             hori = lineHorisontal(body)
             if hori == "he sees":
-                action = rotateToEnemy(body)
+                if wallbetween(body):
+                    action = rotateToEnemy(body)
+                else:
+                    action = moveAway(body)
             elif hori == "both see":
                 action = SHOOT
             elif hori == "you see":
