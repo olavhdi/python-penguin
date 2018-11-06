@@ -132,7 +132,7 @@ def chooseAction(body):
         if line == "vertical":
             vert = lineVertical(body)
             if vert == "he sees":
-                action = RETREAT
+                action = rotateToEnemy(body)
             elif vert == "both see":
                 action = SHOOT
             elif vert == "you see":
@@ -142,7 +142,7 @@ def chooseAction(body):
         elif line == "horisontal":
             hori = lineHorisontal(body)
             if hori == "he sees":
-                action = RETREAT
+                action = rotateToEnemy(body)
             elif hori == "both see":
                 action = SHOOT
             elif hori == "you see":
