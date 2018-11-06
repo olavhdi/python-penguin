@@ -60,9 +60,15 @@ def moveTowardsCenterOfMap(body):
     centerPointY = math.floor(body["mapHeight"] / 2)
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
+def visibleEnemy(body):
+    if length(body["enemies"][0]["x"]) > 0:
+        return True
+    return False
+
+
 def chooseAction(body):
     action = PASS
-    if body["enemies"][0]["strength"] < 250:
+    if body["enemies"][0]["strength"] < 150:
         action=PASS
     else:
         action = moveTowardsCenterOfMap(body)
