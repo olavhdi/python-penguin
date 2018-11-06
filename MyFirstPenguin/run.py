@@ -62,8 +62,8 @@ def moveTowardsCenterOfMap(body):
 
 def visibleEnemy(body):
     if type(body["enemies"][0]["x"]) in type(1):
-        return False
-    return True
+        return True
+    return False
 
 
 def chooseAction(body):
