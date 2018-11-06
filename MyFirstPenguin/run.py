@@ -114,14 +114,14 @@ def chooseAction(body):
                 action = RETREAT
             elif lineVertical(body) == "both see":
                 action = SHOOT
-            elif lineVertical(body) == "you see"
+            elif lineVertical(body) == "you see":
                 action = ADVANCE
         elif enemyInLine(body) == "horisontal":
             if lineHorisontal(body) == "he sees":
                 action = RETREAT
             elif lineHorisontal(body) == "both see":
                 action = SHOOT
-            elif lineHorisontal(body) == "you see"
+            elif lineHorisontal(body) == "you see":
                 action = ADVANCE
     return action
 
