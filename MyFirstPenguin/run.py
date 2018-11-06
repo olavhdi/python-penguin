@@ -61,7 +61,7 @@ def moveTowardsCenterOfMap(body):
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
 def visibleEnemy(body):
-    if type(body["enemies"][0]["x"]) in type(1):
+    if "x" in body["enemies"][0]:
         return True
     return False
 
