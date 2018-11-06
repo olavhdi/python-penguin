@@ -124,6 +124,24 @@ def rotateToEnemy(body):
             return ROTATE_RIGHT
         return ROTATE_RIGHT
 
+def wallbetween(body):
+    hisX = body["enemies"][0]["x"]
+    hisY = body["enemies"][0]["y"]
+    myX = body["you"]["x"]
+    myY = body["you"]["y"]
+    if myX == hisX:
+        for i in body["walls"]:
+            if i["y"] < min(hisY,myY) and i["y"] > max(hisY,myY):
+                return True
+    if myY == hisY:
+        for i in body["walls"]:
+            if i["x"] < min(hisX,myX) and i["x"] > max(hisX,myX):
+                return True
+    return False
+
+def moveAway(body):
+    return RETREAT
+
 
 def chooseAction(body):
     action = moveTowardsCenterOfMap(body)
@@ -132,7 +150,10 @@ def chooseAction(body):
         if line == "vertical":
             vert = lineVertical(body)
             if vert == "he sees":
-                action = rotateToEnemy(body)
+                if wallbetween(body):
+                    action = rotateToEnemy(body)
+                else:
+                    action = moveAway(body)
             elif vert == "both see":
                 action = SHOOT
             elif vert == "you see":
