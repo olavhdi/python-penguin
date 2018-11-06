@@ -106,8 +106,8 @@ def lineHorisontal(body):
     return "noone sees"
 
 def rotateToEnemy(body):
-    if body[enemies][0]["x"] == body["you"]["x"]:
-        if body[enemies][0]["y"] < body["you"]["y"]:
+    if body["enemies"][0]["x"] == body["you"]["x"]:
+        if body["enemies"][0]["y"] < body["you"]["y"]:
             if body["you"]["direction"] == "right":
                 return ROTATE_LEFT
             return ROTATE_RIGHT
@@ -115,7 +115,7 @@ def rotateToEnemy(body):
             if body["you"]["direction"] == "right":
                 return ROTATE_RIGHT
             return ROTATE_LEFT
-    if body[enemies][0]["x"] < body["you"]["x"]:
+    if body["enemies"][0]["x"] < body["you"]["x"]:
         if body["you"]["direction"] == "top":
             return ROTATE_LEFT
         return ROTATE_RIGHT
