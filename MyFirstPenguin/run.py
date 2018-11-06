@@ -61,7 +61,7 @@ def moveTowardsCenterOfMap(body):
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
 def visibleEnemy(body):
-    if length(body["enemies"][0]["x"]) == 0:
+    if body["enemies"][0]["x"] == None:
         return False
     return True
 
