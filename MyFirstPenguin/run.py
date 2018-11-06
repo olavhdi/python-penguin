@@ -72,36 +72,20 @@ def enemyInLine(body):
         return "vertical"
     return "none"
 
-def lineVertical(body):
-    if body["enemies"][0]["x"] < body["you"]["x"]:
-        if body["enemies"][0]["direction"] == "right":
-            if body["you"]["direction"] == "left":
+def line(body,value,first,second):
+    if body["enemies"][0][value] < body["you"][value]:
+        if body["enemies"][0]["direction"] == first:
+            if body["you"]["direction"] == second:
                 return "both see"
             return "he sees"
-        if body["you"]["direction"] == "left":
+        if body["you"]["direction"] == second:
             return "you see"
     else:
-        if body["enemies"][0]["direction"] == "left":
-            if body["you"]["direction"] == "right":
+        if body["enemies"][0]["direction"] == second:
+            if body["you"]["direction"] == first:
                 return "both see"
             return "he sees"
-        if body["you"]["direction"] == "right":
-            return "you see"
-
-def lineHorisontal(body):
-    if body["enemies"][0]["y"] < body["you"]["y"]:
-        if body["enemies"][0]["direction"] == "bottom":
-            if body["you"]["direction"] == "top":
-                return "both see"
-            return "he sees"
-        if body["you"]["direction"] == "top":
-            return "you see"
-    else:
-        if body["enemies"][0]["direction"] == "top":
-            if body["you"]["direction"] == "bottom":
-                return "both see"
-            return "he sees"
-        if body["you"]["direction"] == "bottom":
+        if body["you"]["direction"] == first:
             return "you see"
     return "noone sees"
 
@@ -109,19 +93,22 @@ def lineHorisontal(body):
 def chooseAction(body):
     action = moveTowardsCenterOfMap(body)
     if visibleEnemy(body):
-        if enemyInLine(body) == "vertical":
-            if lineVertical(body) == "he sees":
+        line = enemyInLine(body)
+        if line == "vertical":
+            vert = line(body,"x","right","left")
+            if vert == "he sees":
                 action = RETREAT
-            elif lineVertical(body) == "both see":
+            elif vert == "both see":
                 action = SHOOT
-            elif lineVertical(body) == "you see":
+            elif vert == "you see":
                 action = ADVANCE
-        elif enemyInLine(body) == "horisontal":
-            if lineHorisontal(body) == "he sees":
+        elif line == "horisontal":
+            hori = line(body,"y","bottom","top")
+            if hori == "he sees":
                 action = RETREAT
-            elif lineHorisontal(body) == "both see":
+            elif hori == "both see":
                 action = SHOOT
-            elif lineHorisontal(body) == "you see":
+            elif hori == "you see":
                 action = ADVANCE
     return action
 
