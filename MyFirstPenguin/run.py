@@ -65,11 +65,64 @@ def visibleEnemy(body):
         return True
     return False
 
+def enemyInLine(body):
+    if body["enemies"][0]["x"] == body["you"]["x"]:
+        return "horisontal"
+    elif body["enemies"][0]["y"] == body["you"]["y"]:
+        return "vertical"
+    return "none"
+
+def lineVertical(body):
+    if body["enemies"][0]["x"] < body["you"]["x"]:
+        if body["enemies"][0]["direction"] == "right":
+            if body["you"]["direction"] == "left":
+                return "both see"
+            return "he sees"
+        if body["you"]["direction"] == "left":
+            return "you see"
+    else:
+        if body["enemies"][0]["direction"] == "left":
+            if body["you"]["direction"] == "right":
+                return "both see"
+            return "he sees"
+        if body["you"]["direction"] == "right":
+            return "you see"
+
+def lineHorisontal(body):
+    if body["enemies"][0]["y"] < body["you"]["y"]:
+        if body["enemies"][0]["direction"] == "bottom":
+            if body["you"]["direction"] == "top":
+                return "both see"
+            return "he sees"
+        if body["you"]["direction"] == "top":
+            return "you see"
+    else:
+        if body["enemies"][0]["direction"] == "top":
+            if body["you"]["direction"] == "bottom":
+                return "both see"
+            return "he sees"
+        if body["you"]["direction"] == "bottom":
+            return "you see"
+    return "noone sees"
+
 
 def chooseAction(body):
-    action = moveTowardsCenterOfMap(body)
+    action = PASS
     if visibleEnemy(body):
-        action = SHOOT
+        if enemyInLine(body) == "vertical":
+            if lineVertical(body) == "he sees":
+                action = RETREAT
+            elif lineVertical(body) == "both see":
+                action = SHOOT
+            elif lineVertical(body) == "you see"
+                action = ADVANCE
+        elif enemyInLine(body) == "horisontal":
+            if lineHorisontal(body) == "he sees":
+                action = RETREAT
+            elif lineHorisontal(body) == "both see":
+                action = SHOOT
+            elif lineHorisontal(body) == "you see"
+                action = ADVANCE
     return action
 
 env = os.environ
