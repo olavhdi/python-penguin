@@ -209,8 +209,17 @@ def getBonuesDistance(body, type):
     for bonus in body["bonusTiles"]:
         if bonus["type"] == type:
             result.append([bonus["x"], bonus["y"]])
-
-    return sorted(result, key=sum)
+    minIndex = 0
+    posX = body["you"]["x"]
+    posY = body["you"]["y"]
+    minX = abs(result[0][0] - posX)
+    minY = abs(result[0][1] - posY)
+    for i in range(result):
+        if (abs(result[i][0] - posX)) + (abs(result[i][1] - posY)) < minX + minY:
+            minX = abs(result[i][0] - posX)
+            minY = abs(result[i][1] - posY)
+            minIndex = i
+    return result[minIndex]
 
 
 def goToBonus(body):
@@ -224,7 +233,7 @@ def goToBonus(body):
     if not bonus_locations:
         return moveTowardsCenterOfMap(body)
     else:
-        return moveTowardsPoint(body, bonus_locations[0][0], bonus_locations[0][1])
+        return moveTowardsPoint(body, bonus_locations[0], bonus_locations[1])
 
 def enemyInLine(body):
     if body["enemies"][0]["x"] == body["you"]["x"]:
