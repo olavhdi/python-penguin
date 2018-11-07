@@ -283,40 +283,39 @@ def chooseAction(body):
                 action = SHOOT
             else:
                 action = rotateToEnemy(body)
-        elif line=="hori right" || line=="hori left":
-            if body["you"]["direction"] == "right" && body["enemies"][0]["y"] > body["you"]["y"]:
+        elif line=="hori right" or line=="hori left":
+            if body["you"]["direction"] == "right" and body["enemies"][0]["y"] > body["you"]["y"]:
                 action = ROTATE_RIGHT
-            elif body["you"]["direction"] == "bottom" && body["enemies"][0]["y"] > body["you"]["y"]:
+            elif body["you"]["direction"] == "bottom" and body["enemies"][0]["y"] > body["you"]["y"]:
                 action = PASS
-            elif body["you"]["direction"] == "top" && body["enemies"][0]["y"] > body["you"]["y"]:
+            elif body["you"]["direction"] == "top" and body["enemies"][0]["y"] > body["you"]["y"]:
                 action = ROTATE_RIGHT
-            elif body["you"]["direction"] == "left" && body["enemies"][0]["y"] > body["you"]["y"]:
+            elif body["you"]["direction"] == "left" and body["enemies"][0]["y"] > body["you"]["y"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "bottom" && body["enemies"][0]["y"] < body["you"]["y"]:
+            elif body["you"]["direction"] == "bottom" and body["enemies"][0]["y"] < body["you"]["y"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "right" && body["enemies"][0]["y"] < body["you"]["y"]:
+            elif body["you"]["direction"] == "right" and body["enemies"][0]["y"] < body["you"]["y"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "top" && body["enemies"][0]["y"] < body["you"]["y"]:
+            elif body["you"]["direction"] == "top" and body["enemies"][0]["y"] < body["you"]["y"]:
                 action = PASS
-            elif body["you"]["direction"] == "left" && body["enemies"][0]["y"] < body["you"]["y"]:
+            elif body["you"]["direction"] == "left" and body["enemies"][0]["y"] < body["you"]["y"]:
                 action = ROTATE_RIHT
-        elif line=="vert bottom" || line=="vert top":
-            if body["you"]["direction"] == "right" && body["enemies"][0]["x"] > body["you"]["x"]:
+        elif line=="vert bottom" or line=="vert top":
+            if body["you"]["direction"] == "right" and body["enemies"][0]["x"] > body["you"]["x"]:
                 action = PASS
-            elif body["you"]["direction"] == "bottom" && body["enemies"][0]["x"] > body["you"]["x"]:
+            elif body["you"]["direction"] == "bottom" and body["enemies"][0]["x"] > body["you"]["x"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "top" && body["enemies"][0]["x"] > body["you"]["x"]:
+            elif body["you"]["direction"] == "top" and body["enemies"][0]["x"] > body["you"]["x"]:
                 action = ROTATE_RIGHT
-            elif body["you"]["direction"] == "left" && body["enemies"][0]["x"] > body["you"]["x"]:
+            elif body["you"]["direction"] == "left" and body["enemies"][0]["x"] > body["you"]["x"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "bottom" && body["enemies"][0]["x"] < body["you"]["x"]:
+            elif body["you"]["direction"] == "bottom" and body["enemies"][0]["x"] < body["you"]["x"]:
                 action = ROTATE_RIGHT
-            elif body["you"]["direction"] == "right" && body["enemies"][0]["x"] < body["you"]["x"]:
+            elif body["you"]["direction"] == "right" and body["enemies"][0]["x"] < body["you"]["x"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "top" && body["enemies"][0]["x"] < body["you"]["x"]:
+            elif body["you"]["direction"] == "top" and body["enemies"][0]["x"] < body["you"]["x"]:
                 action = ROTATE_LEFT
-            elif body["you"]["direction"] == "left" && body["enemies"][0]["x"] < body["you"]["x"]:
-                action = PASS
+            elif body["you"]["direction"] == "left" and body["enemies"][0]["x"] < body["you"]["x"]:
         else:
             action = PASS
     else:
