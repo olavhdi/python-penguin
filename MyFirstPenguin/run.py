@@ -132,12 +132,12 @@ def wallbetween(body):
     if myX == hisX:
         for i in body["walls"]:
             if i["y"] < min(hisY,myY) and i["y"] > max(hisY,myY):
-                return True
+                return i["strength"]
     if myY == hisY:
         for i in body["walls"]:
             if i["x"] < min(hisX,myX) and i["x"] > max(hisX,myX):
-                return True
-    return False
+                return i["strength"]
+    return 0
 
 def moveAway(body):
     return RETREAT
@@ -238,12 +238,18 @@ def chooseAction(body):
         if line == "vertical":
             vert = lineVertical(body)
             if vert == "he sees":
-                if wallbetween(body):
-                    action = rotateToEnemy(body)
+                if wallbetween(body) > 0:
+                    if wallbetween(body) < body["you"]["strength"]:
+                        action = PASS
+                    else:
+                        action = rotateToEnemy(body)
                 else:
-                    action = moveAway(body)
+                    action = RETREAT
             elif vert == "both see":
-                action = SHOOT
+                if body["enemies"][0]["strength"]/body["you"]["weaponDamage"] > body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
+                    action = RETREAT
+                else:
+                    action = SHOOT
             elif vert == "you see":
                 action = SHOOT
             else:
@@ -252,11 +258,17 @@ def chooseAction(body):
             hori = lineHorisontal(body)
             if hori == "he sees":
                 if wallbetween(body):
-                    action = rotateToEnemy(body)
+                    if wallbetween(body) < body["you"]["strength"]:
+                        action = PASS
+                    else:
+                        action = rotateToEnemy(body)
                 else:
-                    action = moveAway(body)
+                    action = RETREAT
             elif hori == "both see":
-                action = SHOOT
+                if body["enemies"][0]["strength"]/body["you"]["weaponDamage"] > body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
+                    action = RETREAT
+                else:
+                    action = SHOOT
             elif hori == "you see":
                 action = SHOOT
             else:
