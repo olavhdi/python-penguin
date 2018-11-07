@@ -214,7 +214,7 @@ def getBonuesDistance(body, type):
     posY = body["you"]["y"]
     minX = abs(result[0][0] - posX)
     minY = abs(result[0][1] - posY)
-    for i in range(result):
+    for i in range(len(result)):
         if (abs(result[i][0] - posX)) + (abs(result[i][1] - posY)) < minX + minY:
             minX = abs(result[i][0] - posX)
             minY = abs(result[i][1] - posY)
