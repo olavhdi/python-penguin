@@ -316,8 +316,7 @@ def chooseAction(body):
             elif body["you"]["direction"] == "top" and body["enemies"][0]["x"] < body["you"]["x"]:
                 action = ROTATE_LEFT
             elif body["you"]["direction"] == "left" and body["enemies"][0]["x"] < body["you"]["x"]:
-        else:
-            action = PASS
+                action = PASS
     else:
         action = goToBonus(body)
     return action
