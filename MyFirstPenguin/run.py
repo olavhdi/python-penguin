@@ -65,12 +65,6 @@ def visibleEnemy(body):
         return True
     return False
 
-def enemyInLine(body):
-    if body["enemies"][0]["x"] == body["you"]["x"]:
-        return "horisontal"
-    elif body["enemies"][0]["y"] == body["you"]["y"]:
-        return "vertical"
-    return "none"
 
 def lineVertical(body):
     if body["enemies"][0]["x"] < body["you"]["x"]:
@@ -218,6 +212,7 @@ def getBonuesDistance(body, type):
 
     return sorted(result, key=sum)
 
+
 def goToBonus(body):
     bonus_locations = 0
     if body["you"]["strength"] < 300:
@@ -230,6 +225,21 @@ def goToBonus(body):
         return moveTowardsCenterOfMap(body)
     else:
         return moveTowardsPoint(body, bonus_locations[0][0], bonus_locations[0][1])
+
+def enemyInLine(body):
+    if body["enemies"][0]["x"] == body["you"]["x"]:
+        return "horisontal"
+    elif body["enemies"][0]["y"] == body["you"]["y"]:
+        return "vertical"
+    elif body["enemies"][0]["x"] == body["you"]["x"]+1:
+        return "hori right"
+    elif body["enemies"][0]["x"] == body["you"]["x"]-1:
+        return "hori left"
+    elif body["enemies"][0]["y"] == body["you"]["y"] +1:
+        return "vert bottom"
+    elif body["enemies"][0]["y"] == body["you"]["y"] +1:
+        return "vert top"
+    return "none"
 
 def chooseAction(body):
     action = moveTowardsCenterOfMap(body)
@@ -273,6 +283,14 @@ def chooseAction(body):
                 action = SHOOT
             else:
                 action = rotateToEnemy(body)
+        elif line=="hori right":
+            action = PASS
+        elif line=="hori left":
+            action = PASS
+        elif line=="vert bottom":
+            action = PASS
+        elif line=="vert top":
+            action = PASS
     else:
         action = goToBonus(body)
     return action
