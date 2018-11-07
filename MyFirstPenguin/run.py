@@ -254,10 +254,10 @@ def chooseAction(body):
                     else:
                         action = rotateToEnemy(body)
                 else:
-                    action = ADVANCE
+                    action = RETREAT
             elif vert == "both see":
                 if body["enemies"][0]["strength"]/body["you"]["weaponDamage"] > body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
-                    action = ADVANCE
+                    action = RETREAT
                 else:
                     action = SHOOT
             elif vert == "you see":
@@ -273,7 +273,7 @@ def chooseAction(body):
                     else:
                         action = rotateToEnemy(body)
                 else:
-                    action = ADVANCE
+                    action = RETREAT
             elif hori == "both see":
                 if body["enemies"][0]["strength"]/body["you"]["weaponDamage"] > body["you"]["strength"]/body["enemies"][0]["weaponDamage"]:
                     action = MOVE_UP
