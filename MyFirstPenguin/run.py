@@ -284,13 +284,13 @@ def chooseAction(body):
             else:
                 action = rotateToEnemy(body)
         elif line=="hori right":
-            action = PASS
+            action = rotateToEnemy(body)
         elif line=="hori left":
-            action = PASS
+            action = rotateToEnemy(body)
         elif line=="vert bottom":
-            action = PASS
+            action = rotateToEnemy(body)
         elif line=="vert top":
-            action = PASS
+            action = rotateToEnemy(body)
     else:
         action = goToBonus(body)
     return action
