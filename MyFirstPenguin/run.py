@@ -299,7 +299,7 @@ def chooseAction(body):
             elif body["you"]["direction"] == "top" and body["enemies"][0]["y"] < body["you"]["y"]:
                 action = PASS
             elif body["you"]["direction"] == "left" and body["enemies"][0]["y"] < body["you"]["y"]:
-                action = ROTATE_RIHT
+                action = ROTATE_RIGHT
         elif line=="vert bottom" or line=="vert top":
             if body["you"]["direction"] == "right" and body["enemies"][0]["x"] > body["you"]["x"]:
                 action = PASS
